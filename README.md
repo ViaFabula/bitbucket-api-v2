@@ -4,7 +4,7 @@
 
 - See [Use the Bitbucket Cloud REST APIs](https://confluence.atlassian.com/bitbucket/use-the-bitbucket-cloud-rest-apis-222724129.html)
 
-This fork just add a few (repository) features to the original library, such a delete or update an existing repo.
+This fork just adds a few (repository) features to the original library, such a delete or update an existing repo.
 
 ## Alternatives
 
