@@ -1,10 +1,10 @@
 {
   "name": "bitbucket-api-v2",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Wrapper for the BitBucket API v2, the version required to use OAuth2. Includes support for XHR requests.",
-  "homepage": "https://github.com/kristianmandrup/bitbucket-api-v2.git",
+  "homepage": "https://github.com/ViaFabula/bitbucket-api-v2.git",
   "main": "src/index.js",
-  "author": "Kristian Mandrup <kmandrup@gmail.com",
+  "author": "Via Fabula dev team<dev@viafabula.com>",
   "scripts": {
     "lint": "eslint ./src --quiet",
     "test": "nyc ava",
@@ -13,26 +13,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/kristianmandrup/bitbucket-api-v2.git"
+    "url": "http://github.com/ViaFabula/bitbucket-api-v2.git"
   },
   "engine": [
     "node >=7.0.0"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
+    "bitbucket-auth": "github:kristianmandrup/bitbucket-auth",
+    "lodash": "^4.17.11",
     "oauth": "^0.9.15",
     "superagent": "^3.7.0",
-    "underscore.string": "^3.3.4",
-    "xhr": "^2.4.0",
-    "bitbucket-auth": "github:kristianmandrup/bitbucket-auth"
+    "underscore.string": "^3.3.5",
+    "xhr": "^2.4.0"
   },
   "devDependencies": {
     "ava": "^0.22.0",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-register": "^6.26.0",
     "babili": "^0.1.4",

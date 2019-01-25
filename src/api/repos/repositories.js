@@ -33,7 +33,6 @@ function createApi(api, opts = {}) {
           name: repo,
           is_private: false
         }
-        // throw new Error('Repo must be initialized with a booelan privacy setting and a string name')
       }
 
       // The official API error is that slugs must be alphanumeric with underscore, dot, and dash, lowercase, and
@@ -58,6 +57,43 @@ function createApi(api, opts = {}) {
         result.$createListener(callback)
       )
     },
+
+  /**
+   * Delete an existing repository
+   * @param {String} repo owner
+   * @param {String} name of the repo. This is not a slug (may include special characters)
+   * @param {Object} repo repo metadata as specified by Bitbucket's API documentation.
+   */
+  delete(username, repo, callback) {
+      if (!repo || !_.isBoolean(repo.is_private) || !_.isString(repo.name)) {
+          repo = {
+              name: repo,
+              is_private: false
+          }
+      }
+
+      // The official API error is that slugs must be alphanumeric with underscore, dot, and dash, lowercase, and
+      // no whitespace. Most things convert to dashes with Atlassian's secret converter but apostophes just disappear
+      // (here I've assumed quotes are the same).
+      // There are additional constraints not provided in the error message nor documented anywhere that can only be
+      // found by trial and error. Among these are: no consecutive dashes except in some weird trivial edge cases
+      // (i.e. all dashes, which we won't worry about), no ending in a dash, and very likely no starting in a dash.
+      const repoSlug = repo.name
+          .replace(/['"]/g, '')
+          .replace(/\W/g, '-')
+          .replace(/--+/g, '-')
+          .replace(/^-/, '')
+          .replace(/-$/, '')
+          .toLowerCase()
+
+      validateArgs('create', arguments)
+      const uri = buildUri(username, repoSlug)
+      api.delete(
+          uri,
+          repo, null,
+          result.$createListener(callback)
+      )
+  },
 
     /**
      * Create a new pull request
